@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://next.foto-dino.de
+
+# Sitemaps
+Sitemap: https://next.foto-dino.de/sitemap.xml

@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+body {
+  position: relative;
+}
+
+.shine {
+  -moz-animation: shine 2s infinite;
+  -webkit-animation: shine 2s infinite;
+  animation: shine 2s infinite;
+}
+
+@keyframes shine {
+  0% {
+    background-color: #e6c442;
+  }
+  50% {
+    background-color: #caac3a;
+  }
+  100% {
+    background-color: #e6c442;
+  }
+}

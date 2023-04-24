@@ -1,0 +1,48 @@
+name: Deploy Self Hosted Next JS
+run-name: Deploy branch ${{ github.ref_name }} to self-hosted
+on:
+  push:
+    branches:
+      - master
+      - dev
+      - staging
+
+jobs:
+  build:
+    runs-on: ["self-hosted", "nextjs-${{ github.ref_name }}"]
+    steps:
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+
+      # - name: Cache yarn cache
+      #   uses: actions/cache@v3
+      #   id: yarn-cache
+      #   with:
+      #     path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+      #     key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+      #     restore-keys: ${{ runner.os }}-yarn-
+
+      # - name: Cache next cache
+      #   uses: actions/cache@v3
+      #   id: next-cache
+      #   with:
+      #     path: ${{ github.workspace }}/.next/cache
+      #     key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+      #     restore-keys: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
+      # - name: Install Dependencies
+      #   # if: steps.yarn-cache.outputs.cache-hit != 'true'
+      #   run: yarn install --ignore-engines
+
+      - name: Run Build
+        # if: steps.next-cache.outputs.cache-hit != 'true'
+        run: yarn build
+
+      - name: Remove Old Static Files
+        run: rm -r /var/www/nextjs/static/
+
+      - name: Copy New Static Files
+        run: cp -r .next/static/ /var/www/nextjs/static
+
+      - name: Restart pm2
+        run: pm2 restart next
