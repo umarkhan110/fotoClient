@@ -28,7 +28,7 @@ const Home = () => {
         url="https://next.foto-dino.de"
       />
       <main>
-        {loading && <Loader />}
+        {/* {loading && <Loader />} */}
         <div className="relative">
           <video
             className="w-full h-full object-cover"
