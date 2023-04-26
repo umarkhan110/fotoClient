@@ -11,6 +11,7 @@ import moment from "moment";
 import "moment/locale/de";
 import { useEffect } from "react";
 import { GTMPageView } from '../lib/gtm';
+import { Router } from "next/router";
 moment.locale("de");
 
 export default function App({ Component, pageProps }) {
