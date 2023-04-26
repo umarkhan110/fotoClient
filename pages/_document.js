@@ -141,6 +141,12 @@ posthog.init("phc_5IeZILvqXGvSrXhVEhBOQ7dAvjvNcO0rou4loIRDhwo", {
         height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
             }}
           />
+           <script
+            id="Cookiebot"
+            src="https://consent.cookiebot.com/uc.js"
+            data-cbid="b54b7662-fd8b-4a95-86f9-36026b1d45b9"
+            type="text/javascript"
+            async></script>
         </body>
       </Html>
     );
