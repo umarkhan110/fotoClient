@@ -10,14 +10,22 @@ import analytics from '../utility/analytics'
 import moment from "moment";
 import "moment/locale/de";
 import { useEffect } from "react";
+import { GTMPageView } from '../lib/gtm';
 moment.locale("de");
 
 export default function App({ Component, pageProps }) {
   const locale = LOCALES.GERMAN;
+  // useEffect(() => {
+  //   analytics.page() 
+	// 	// this will fire the Page Track function on every new router change.
+  // }, [])
   useEffect(() => {
-    analytics.page() 
-		// this will fire the Page Track function on every new router change.
-  }, [])
+    const handleRouteChange = (url) => GTMPageView(url);
+    Router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+        Router.events.off('routeChangeComplete', handleRouteChange);
+    };
+}, []);
   return (
     <Context>
       <I18nProvider locale={locale}>
