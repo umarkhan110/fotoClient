@@ -132,15 +132,15 @@ posthog.init("phc_5IeZILvqXGvSrXhVEhBOQ7dAvjvNcO0rou4loIRDhwo", {
           />
         </Head>
         <body>
-          
-          <Main />
-          <NextScript />
           <noscript
             dangerouslySetInnerHTML={{
               __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMBCZZB"
         height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
             }}
-          />
+          ></noscript>
+          <Main />
+          <NextScript />
+          
            <script
             id="Cookiebot"
             src="https://consent.cookiebot.com/uc.js"
